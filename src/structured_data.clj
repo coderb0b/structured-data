@@ -63,13 +63,14 @@
     (assoc b :authors (conj (get b :authors) a))))
 
 (defn alive? [author]
-  :-)
+  (if (contains? author :death-year) false true))
 
 (defn element-lengths [collection]
-  :-)
+  (map count collection))
 
 (defn second-elements [collection]
-  :-)
+  (let [get2 (fn [x] (get x 1))]
+    (map get2 collection)))
 
 (defn titles [books]
   :-)
