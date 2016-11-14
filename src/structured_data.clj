@@ -73,16 +73,18 @@
     (map get2 collection)))
 
 (defn titles [books]
-  :-)
+  (map :title books))
 
 (defn monotonic? [a-seq]
-  :-)
+  (if (or (apply <= a-seq) (apply >= a-seq)) true false))
 
 (defn stars [n]
-  :-)
+  (apply str (repeat n "*")))
 
 (defn toggle [a-set elem]
-  :-)
+  (cond
+    (contains? a-set elem) (disj a-set elem)
+    :else (conj a-set elem)))
 
 (defn contains-duplicates? [a-seq]
   :-)
