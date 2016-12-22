@@ -87,31 +87,39 @@
     :else (conj a-set elem)))
 
 (defn contains-duplicates? [a-seq]
-  :-)
+  (let [setti (set a-seq)]
+    (> (count a-seq) (count setti))))
 
 (defn old-book->new-book [book]
-  :-)
+  (assoc book :authors (set (get book :authors))))
 
 (defn has-author? [book author]
-  :-)
+  (contains? (get book :authors) author))
 
 (defn authors [books]
-  :-)
+  (let [author-names
+         (fn [book] (map :name (:authors book)))]
+    (set (apply concat (map author-names books)))))
 
 (defn all-author-names [books]
   :-)
 
 (defn author->string [author]
-  :-)
+  (let [nimi (get author :name)
+        b (get author :birth-year)
+        d (get author :death-year)]
+    (cond
+      (not= b nil) (str nimi " (" b " - " d ")")
+      :else (str nimi))))
 
 (defn authors->string [authors]
-  :-)
+  (apply str (interpose ", " (map author->string authors))))
 
 (defn book->string [book]
-  :-)
+  (apply str (get book :title) ", written by " (interpose ", " (map author->string (get book :authors)))))
 
 (defn books->string [books]
-  :-)
+  (apply str (map :title books) ", written by "(interpose ", " (map author->string (authors books)))))
 
 (defn books-by-author [author books]
   :-)
